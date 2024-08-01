@@ -13,7 +13,7 @@ You can use an Openvpn configuration file instead of using the built in provider
 
 ## Setup
 
-In the following we assume your custom openvpn configuration file is named `custom.conf`.
+In the following we assume your custom openvpn configuration file is named `custom.conf`. Note this can be named something else, for example `autralia.ovpn`.
 
 1. Replace the VPN server hostname by one of its IP addresses. In `custom.conf`, find the line starting with `remote`. The second field is the VPN server hostname. If it is not an IP address, you need to DNS resolve it, for example with `nslookup domain.com` and replace the hostname field with one of its corresponding IP addresses. This is the case as gluetun's firewall is designed not to leak anything including an initial DNS resolution when starting.
 1. Bind mount your `custom.conf` file to `/gluetun/custom.conf`. If you have other files such as `ca.crt` or `up.sh`, bind mount them to `/gluetun/` as well.
@@ -71,9 +71,7 @@ Otherwise, `user ${OPENVPN_PROCESS_USER}` option is added or overridden.
 
 #### Options overridden if variables are set
 
-- `OPENVPN_CIPHERS`, if set, adds or overrides:
-  - `cipher` for OpenVPN 2.4
-  - `data-ciphers` and `data-ciphers-fallback` for OpenVPN 2.5
+- `OPENVPN_CIPHERS`, if set, adds or overrides `data-ciphers` and `data-ciphers-fallback`
 - `OPENVPN_AUTH`, if set, adds or overrides `auth`.
 - `OPENVPN_MSSFIX`, if set, adds or overrides `mssfix`.
 - `VPN_ENDPOINT_PORT`, if set, overrides the port of the remote connection found in the file.

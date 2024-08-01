@@ -28,7 +28,11 @@ jobs:
           level: error
 
       - uses: ibiqlik/action-yamllint@v3
-
-      - uses: gaurav-nelson/github-action-markdown-link-check@v1
         with:
-          use-quiet-mode: yes
+          config_data: "{extends: default, rules: {document-start: disable}}"
+
+      - uses: umbrelladocs/action-linkspector@v1
+        with:
+          reporter: github-check
+          fail_on_error: true
+          filter_mode: nofilter
